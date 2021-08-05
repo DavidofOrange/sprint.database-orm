@@ -30,6 +30,7 @@ class AccountController extends BaseController {
     try {
       const { accountId } = req.params;
       const account = await this.manager.getAccount(accountId);
+      console.log(account);
       if (!account) {
         res.status(404).send({ error: "account not found" });
         return;

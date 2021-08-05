@@ -17,7 +17,7 @@
     "migrate": "npm run orm migration:run",
     "rollback": "echo 'FIXME!'",
     "seeder": "ts-node -r dotenv/config ./node_modules/typeorm-seeding/dist/cli.js",
-    "seed": "npm run seeder --configName src/ormconfig.ts seed"
+    "seed": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed -n ./src/ormconfig.ts"
   },
   "dependencies": {
     "@types/chai": "^4.2.14",
@@ -35,10 +35,11 @@
     "husky": "^4.3.0",
     "jsonwebtoken": "^8.5.1",
     "lodash.pick": "^4.4.0",
+    "migrations": "^1.0.1",
     "mocha": "^8.2.1",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.29",
+    "typeorm": "^0.2.32",
     "typeorm-seeding": "^1.6.1",
     "uuid": "^8.3.1"
   },

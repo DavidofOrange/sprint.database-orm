@@ -91,7 +91,7 @@ describe("expense manager", () => {
       // Sign in
       const accessToken: string = await signInAndGetToken();
 
-      // Trying to other's profile
+      // Trying to access other's profile
       // "6fb61907-2fab-48d3-80ae-276a28ba4c2f" is a random userId, which may or may not exist in our DB
       // Our API should restrict access by non-owner
       const getUserResponse = await chai
@@ -180,15 +180,15 @@ describe("expense manager", () => {
   const createNewAccount = async () => {
     /**
      * Restore our test account
-     * 
+     *
      * [1] https://typeorm.io/#/relations-faq/how-to-use-relation-id-without-joining-relation
      */
     const newAccount = new Account();
     newAccount.id = TEST_ACCOUNT_ID;
     newAccount.name = "tester coin pouch";
-    newAccount.owner = await userRepo.findOne(TEST_USER_ID);  // Alternatively, use [1]
+    newAccount.owner = await userRepo.findOne(TEST_USER_ID); // Alternatively, use [1]
     await accountRepo.save(newAccount);
-  }
+  };
 
   describe("Account service", () => {
     before(() => {
@@ -203,7 +203,7 @@ describe("expense manager", () => {
 
     beforeEach(createNewAccount);
 
-    it.skip("should restrict access by unauthenticated user", async () => {
+    it("should restrict access by unauthenticated user", async () => {
       /**
        * FIXME
        *
@@ -213,7 +213,7 @@ describe("expense manager", () => {
        */
     });
 
-    it.skip("should restrict access by unauthorised user", async () => {
+    it("should restrict access by unauthorised user", async () => {
       /**
        * FIXME
        *
@@ -295,6 +295,7 @@ describe("expense manager", () => {
       expect(deleteResponse).to.have.status(200);
 
       const getResponse = await chai.request(app).get(`/accounts/${TEST_ACCOUNT_ID}`).set("Authorization", accessToken);
+      console.log(getResponse.body);
       expect(getResponse).to.have.status(404);
     });
 

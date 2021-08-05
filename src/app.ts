@@ -75,7 +75,6 @@ class App {
     errorHandlers.forEach((_errorHandler) => this.app.use(errorHandlers));
   }
 }
-
 /**
  * A factory function that returns an instance
  * of App with default configurations
